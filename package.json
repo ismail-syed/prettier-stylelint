@@ -1,11 +1,11 @@
 {
-    "name": "prettier-stylelint",
+    "name": "prettier-stylelint-formatter",
     "version": "0.4.2",
-    "description": "code > prettier > stylelint > formatted code",
-    "repository": "hugomrdias/prettier-stylelint",
+    "description": "fork of hugomrdias/prettier-stylelint",
+    "repository": "ismail-syed/prettier-stylelint-formatter",
     "main": "index.js",
     "bin": "./cli.js",
-    "author": "Hugo Dias <mail@hugodias.me> (http://hugodias.me/)",
+    "author": "Ismail Syed <ismail.syed@shopify.com>",
     "license": "MIT",
     "keywords": [
         "stylelint",
