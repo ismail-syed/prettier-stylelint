@@ -1,6 +1,6 @@
 {
     "name": "prettier-stylelint-formatter",
-    "version": "0.4.2",
+    "version": "0.5.0",
     "description": "fork of hugomrdias/prettier-stylelint",
     "repository": "ismail-syed/prettier-stylelint-formatter",
     "main": "index.js",
