@@ -33,6 +33,11 @@ function resolveConfig({
 }
 
 resolveConfig.resolve = (stylelintConfig, prettierOptions = {}) => {
+    //  prettier.resolveConfig.sync(filePath) returns null at if a project doesn't have a prettier config
+    if (prettierOptions === null) {
+        prettierOptions = {};
+    }
+
     const { rules } = stylelintConfig;
 
     if (rules['max-line-length']) {
