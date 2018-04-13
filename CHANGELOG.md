@@ -1,3 +1,8 @@
+<a name="0.5.1-beta.1"></a>
+## [0.5.1-beta.1](https://github.com/ismail-syed/prettier-stylelint-formatter/compare/v0.5.0...v0.5.1-beta.1) (2018-04-13)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/ismail-syed/prettier-stylelint-formatter/compare/v0.4.2...v0.5.0) (2017-11-15)
 
