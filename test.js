@@ -217,6 +217,26 @@ a[id="foo"] { content: "x"; }
         });
 });
 
+test('format scss uses the right parser', (t) => {
+    const filePath = './fixtures/trailing-comma/scss.scss';
+    const source = fs.readFileSync(filePath, 'utf8');
+
+    return format({
+        text: source,
+        filePath: filePath
+    }).then((source) => {
+        t.is(source,
+            `$greek: (
+alpha: 100,
+beta: 200,
+gamma: 300,
+);
+`);
+
+        return source;
+    });
+});
+
 test('resolve relative package', (t) => {
     const path = resolveFrom('./fixtures/find-package/style.css', 'prettier');
 
@@ -235,11 +255,11 @@ test('resolve relative package deep', (t) => {
 test('resolve relative package fallback', (t) => {
     const path = resolveFrom('./fixtures/style.css', 'prettier');
 
-    t.is('1.8.2', require(path).version);
+    t.is('1.13.6', require(path).version);
 });
 
 test('resolve relative package null', (t) => {
     const path = resolveFrom(__filename, 'prettier');
 
-    t.is('1.8.2', require(path).version);
+    t.is('1.13.6', require(path).version);
 });
