@@ -79,7 +79,18 @@ test('resolveConfig prettier merge', t =>
         t.is(config[0].semi, false);
 
         return config;
-    }));
+    })
+);
+
+test('resolveConfig contains filepath', t =>
+    resolveConfig({
+        filePath: './fixtures/style.css',
+        prettierOptions: getPrettierConfig('./fixtures/style.css')
+    }).then((config) => {
+        t.is(config[0].filepath, './fixtures/style.css');
+        return config;
+    })
+);
 
 test('format', (t) => {
     const source = fs.readFileSync('./fixtures/style.css', 'utf8');
