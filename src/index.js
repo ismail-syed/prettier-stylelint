@@ -33,11 +33,6 @@ function resolveConfig({
 }
 
 resolveConfig.resolve = (stylelintConfig, prettierOptions = {}) => {
-    //  prettier.resolveConfig.sync(filePath) returns null at if a project doesn't have a prettier config
-    if (prettierOptions === null) {
-        prettierOptions = {};
-    }
-
     const { rules } = stylelintConfig;
 
     if (rules['max-line-length']) {
@@ -65,7 +60,6 @@ resolveConfig.resolve = (stylelintConfig, prettierOptions = {}) => {
             prettierOptions.tabWidth = indentation;
         }
     }
-    prettierOptions.parser = 'css';
     debug('prettier %O', prettierOptions);
     debug('linter %O', stylelintConfig);
 
@@ -104,10 +98,16 @@ function getPrettierConfig(filePath, prettierPath) {
     const prettier = requireRelative(prettierPath, filePath, 'prettier');
 
     // NOTE: Backward-compatibility with old prettier versions (<1.7)
-    //       that don't have ``resolveConfig.sync` method.
+    // that don't have `resolveConfig.sync` method.
+    // prettier.resolveConfig.sync(filePath) returns null at if a project
+    // doesn't have a prettier config
+    // Add filepath as prettier does not currently include that in the resolved
+    // configuration. `filepath` eventually gets used as a hint for which
+    // parser to use within prettier
+
     return typeof prettier.resolveConfig.sync === 'undefined' ?
         {} :
-        prettier.resolveConfig.sync(filePath);
+        Object.assign({}, prettier.resolveConfig.sync(filePath) || {}, {filepath: filePath});
 }
 
 function format({
